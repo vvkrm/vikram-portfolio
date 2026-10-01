@@ -23,12 +23,14 @@ export const site = {
     "Outside of work I enjoy reading, long walks, and learning how things work. This site is my small corner of the internet — a place to say hello and share a little about myself.",
   ],
   email: "mail@veervikram.com",
-  url: "https://veervikram.com",
-  nav: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ],
+  url: "https://veervikram.top",
+  /** Rotating roles shown under the hero greeting. */
+  roles: ["Software engineer", "Curious builder", "Terminal tinkerer"],
+  /** Terminal identity shown in prompts and window chrome. */
+  shell: {
+    user: "veer",
+    host: "portfolio",
+  },
   socials: [
     { label: "GitHub", href: "https://github.com/", icon: "github" },
     { label: "LinkedIn", href: "https://www.linkedin.com/", icon: "linkedin" },

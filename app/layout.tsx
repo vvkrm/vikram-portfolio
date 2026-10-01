@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { site } from "@/data/site";
 
-const geist = Geist({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
@@ -42,19 +40,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preload" as="image" href="/wallpapers/light.webp" />
+        <link rel="preload" as="image" href="/wallpapers/dark.webp" />
+      </head>
       <body
-        className={`${geist.className} bg-white text-neutral-800 antialiased dark:bg-neutral-950 dark:text-neutral-300`}
+        className={`${geistMono.className} bg-[#8fa3c7] font-mono text-[var(--color-ink)] antialiased dark:bg-[#0b0e14]`}
       >
         <Providers>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:font-medium focus:text-white"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-12 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:font-medium focus:text-white"
           >
             Skip to content
           </a>
-          <Navbar />
           <main id="main">{children}</main>
-          <Footer />
         </Providers>
       </body>
     </html>

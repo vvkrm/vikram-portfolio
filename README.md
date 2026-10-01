@@ -1,8 +1,13 @@
 # Veer Vikram — Personal Portfolio
 
-A calm, minimal single-page personal site. Built with Next.js (App Router),
+A retro macOS-style desktop personal site. Built with Next.js (App Router),
 TypeScript, Tailwind CSS, next-themes, and lucide-react. No backend, no
 database — fully static-friendly and deployable on Vercel's free tier.
+
+The site is a single interactive desktop: a menu bar with a live clock and
+theme toggle, desktop shortcut icons, a frosted-glass dock, and draggable-feel
+windows (Home, About, Contact) plus a working mini terminal. Wallpapers switch
+with the theme and all copy lives in `data/site.ts`.
 
 ## Run it
 

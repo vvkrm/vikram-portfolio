@@ -1,13 +1,5 @@
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
+import { Desktop } from "@/components/desktop/Desktop";
 
 export default function Home() {
-  return (
-    <div className="mx-auto w-full max-w-2xl px-6">
-      <Hero />
-      <About />
-      <Contact />
-    </div>
-  );
+  return <Desktop />;
 }
