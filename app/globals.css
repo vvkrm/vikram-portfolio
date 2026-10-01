@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Class-based dark mode so next-themes can toggle it. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /*
+   * The site's single accent color.
+   * Light theme: deep teal (#0d9488) — passes WCAG AA on white.
+   * Dark theme override below: bright teal (#2dd4bf) — passes WCAG AA on near-black.
+   * To change the accent everywhere, edit these two values.
+   */
+  --color-accent: #0d9488;
+}
+
+.dark {
+  --color-accent: #2dd4bf;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Gentle fade-in used by the Reveal component. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
