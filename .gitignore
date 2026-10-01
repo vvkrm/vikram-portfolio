@@ -27,3 +27,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated wallpaper binaries (decoded from *.b64 by scripts/decode-wallpapers.mjs)
+# note: *.webp.b64 source files are NOT ignored
+public/wallpapers/*.webp

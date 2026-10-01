@@ -34,7 +34,19 @@ Everything personal lives in one file: **`data/site.ts`**.
   (used as the accessible name), an `href`, and an `icon` (one of `github`,
   `linkedin`, `x`, `instagram`).
 
-The navigation labels and anchors live in `nav` in the same file.
+The navigation is the desktop itself: menu bar, desktop icons, and dock —
+all defined in `components/desktop/apps.tsx`.
+
+## Wallpapers
+
+The light/dark desktop wallpapers are original AI-generated images stored as
+base64 text in `public/wallpapers/*.webp.b64` (binary files can't be pushed
+through the available tooling, so they're kept as text). They are decoded to
+real `.webp` files automatically before dev/build by
+`scripts/decode-wallpapers.mjs` (wired via `predev`/`prebuild` in
+`package.json`). The generated `.webp` files are gitignored — never commit
+them. To replace a wallpaper, overwrite the `.b64` file with new base64 data
+and delete the corresponding `.webp` so it gets re-decoded.
 
 ## Change the accent color
 
@@ -70,20 +82,28 @@ to your main branch redeploys automatically.
 
 ```
 app/
-  layout.tsx      Root layout: fonts, metadata/SEO, navbar, footer
-  page.tsx        Home page — composes the sections
-  globals.css     Tailwind, accent color, focus styles, reveal animation
+  layout.tsx      Root layout: fonts, metadata/SEO, theme provider
+  page.tsx        Home page — renders the desktop
+  globals.css     Tailwind, theme tokens, focus styles, terminal caret
   icon.svg        Favicon
 components/
-  Navbar.tsx      Sticky navbar with smooth-scroll anchors + theme toggle
-  Hero.tsx        Name, tagline, intro
-  About.tsx       Bio paragraphs
-  Contact.tsx     Mailto button + social icon links
-  Footer.tsx      Copyright + theme toggle
-  ThemeToggle.tsx Light/dark switch (system default, remembered, no flash)
-  Reveal.tsx      Gentle fade-in on scroll (respects reduced motion)
+  desktop/
+    Desktop.tsx       Window manager + wallpaper layer
+    MenuBar.tsx       Top menu bar: breadcrumb, clock, theme toggle
+    DesktopIcons.tsx  Left-column shortcut icons
+    Dock.tsx          Bottom frosted-glass dock
+    Window.tsx        Window chrome (traffic lights, title bar, path bar)
+    HeroWindow.tsx    "Hi, I'm Veer Vikram" greeting card
+    AboutWindow.tsx   Bio window
+    ContactWindow.tsx Contact window (email + socials)
+    TerminalWindow.tsx Working mini terminal
+    apps.tsx          App registry (ids, labels, icons)
   Providers.tsx   next-themes provider wrapper
   icons.tsx       Brand icons as inline SVGs (current lucide-react has no brand icons)
 data/
   site.ts         All content — the only file you need to edit
+public/
+  wallpapers/     *.webp.b64 wallpaper sources (decoded at predev/prebuild)
+scripts/
+  decode-wallpapers.mjs  Decodes .b64 wallpapers to .webp
 ```
